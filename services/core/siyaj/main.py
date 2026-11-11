@@ -8,6 +8,8 @@ from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from siyaj.api import health
+from siyaj.api.correlation import CorrelationIdMiddleware
+from siyaj.api.errors import register_error_handlers
 from siyaj.config import Settings
 
 
@@ -46,6 +48,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         redoc_url=None,
         openapi_url=None,
     )
+    app.add_middleware(CorrelationIdMiddleware)
+    register_error_handlers(app)
     app.include_router(health.router)
     return app
 
