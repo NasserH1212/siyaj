@@ -23,7 +23,7 @@ Before any task, read:
 
 ## Stack
 Python 3.12, FastAPI, Pydantic v2, SQLAlchemy 2 + Alembic, asyncpg, redis-py, httpx,
-cryptography, argon2-cffi, pytest, hypothesis, ruff, mypy.
+cryptography, argon2-cffi, pytest, hypothesis, ruff, mypy, setuptools (build backend only).
 Do NOT add any dependency not listed here without asking first.
 
 ## Commands
