@@ -48,8 +48,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         redoc_url=None,
         openapi_url=None,
     )
-    app.add_middleware(CorrelationIdMiddleware)
     register_error_handlers(app)
+    # Added last so it is outermost: the ID exists before the error middleware needs it.
+    app.add_middleware(CorrelationIdMiddleware)
     app.include_router(health.router)
     return app
 
